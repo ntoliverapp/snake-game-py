@@ -21,33 +21,33 @@ def move(): #give movement to our snake. Snake always move in forward direction.
         square(head.x, head.y,9,'red') #red square to indicate two outs. 
         update()
         return
-
-    snake.append() #adda a red square if these conditions are satisfied
+    
+    snake.append(head) #add a a red square if these conditions are satisfied
 
     if head == food: # if the head of the snake eats the food, it gets points
-        print('snake',len(snake))
-        food.x=randrange(-15,15)*10 #when snake catches food, new food will randomly appear
+        print('Snake:',len(snake))
+        food.x=randrange(-15,15)*10 #when snake catches food, new food will randomly appear within set range
         food.y=randrange(-15,15)*10
     else:
         snake.pop(0)
     
-clear()
+    clear()
 
-for body in snake: #create snake element by creating for loop. snake is a combination solve square. 
-    square(body.x,body.y,9,'green')
+    for body in snake: #create snake element by creating for loop. snake is a combination solve square. 
+        square(body.x,body.y,9,'green')
+        
+    square(food.x,food.y,9,'red')
+    update() #update object 
+    ontimer(move, 100)
 
-square(food.x,food.y,9,'red')
-update() #update object 
-ontimer(move, 100)
-
-hideturtle()
-tracer(False) #brings back the elements tot the initial state
+hideturtle() 
+tracer(False) #brings back the elements to the initial state
 listen() #continuously updates game
-onkey(lambda:changes(10,0),'Right') #game controls using onkey, set the controls and give graph values
-onkey(lambda:changes(-10,0),'Left')
-onkey(lambda:changes(0,10),'Up')
-onkey(lambda:changes(0,-10),'Down')
-
+onkey(lambda:change(10,0),'Right') #game controls using onkey, set the controls and give graph values
+onkey(lambda:change(-10,0),'Left')
+onkey(lambda:change(0,10),'Up')
+onkey(lambda:change(0,-10),'Down')
+  
 move()
 done()
 
@@ -57,5 +57,6 @@ done()
 
 
 
+    
     
     
